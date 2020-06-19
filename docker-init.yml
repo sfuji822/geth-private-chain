@@ -1,0 +1,27 @@
+version: "3"
+services:
+  make-accounts:
+    image: ethereum/client-go:${GETH_VERSION}
+    container_name: geth-setup
+    user: ${CURRENT_UID}
+    volumes:
+      - ./datadir:/datadir
+      - ./init-scripts:/init-scripts
+    tty: true
+    working_dir: /init-scripts
+    entrypoint: sh 
+    command:
+      ./make-accounts.sh 
+  init-chain:
+    image: ethereum/client-go:${GETH_VERSION}
+    container_name: geth-setup
+    user: ${CURRENT_UID}
+    volumes:
+      - ./datadir:/datadir
+      - ./init-scripts:/init-scripts
+    tty: true
+    working_dir: /init-scripts
+    entrypoint: sh 
+    command:
+      ./init-chain.sh
+

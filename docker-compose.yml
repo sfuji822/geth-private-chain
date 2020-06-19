@@ -1,0 +1,11 @@
+version: "3"
+services:
+  geth-private:
+    image: ethereum/client-go:${GETH_VERSION}
+    container_name: geth-setup
+    user: ${CURRENT_UID}
+    volumes:
+      - ./datadir:/datadir
+    tty: true
+    working_dir: /datadir
+    entrypoint: sh
